@@ -1,6 +1,9 @@
 import './App.css';
 import TodoList from './components/TodoList';
 import Chart from './components/Chart';
+import NavBar from './components/NavBar';
+import { Route, Switch } from 'react-router-dom';
+import Todo from './components/Todo';
 
 function App() {
   const data = [
@@ -49,8 +52,16 @@ function App() {
   ];
   return (
     <div className="todo-app">
-        <TodoList />
-        <Chart data={data} />
+        <NavBar/>
+        <hr/>
+        <Switch>
+          <Route path="/report">
+            <Chart data={data}/>
+          </Route>
+          <Route path="/">
+            <TodoList/>
+          </Route>
+        </Switch>
     </div>
   );
 }

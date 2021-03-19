@@ -49,11 +49,11 @@
     outline: none;
     width: 320px;
     background: transparent;
-    color: #fff;
+    color: black;
   }
   
   .todo-input::placeholder {
-    color: #e2e2e2;
+    color: gray;
   }
   
   .todo-button {
