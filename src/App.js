@@ -98,7 +98,7 @@ function App() {
             <h1>Completed Tasks:</h1>
           </Route>
           <Route path="/">
-            <Timer updateData={updateData}/>
+            <Timer updateData={updateData} todos={todos}/>
             <TodoForm onSubmit={addTodo} />
             <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo}/>
           </Route>
