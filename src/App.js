@@ -15,6 +15,22 @@ function App() {
   const handleShow = () => setShow(true);
 
   const [todos, setTodos] = useState([])
+  const [data, setData] = useState([
+    {
+      'name': 'Study',
+      'Seconds': 42
+    },
+    {
+      'name': 'Read',
+      'Seconds': 56
+    },
+    {
+      'name': 'Exercise for 2 hours',
+      'Seconds': 2
+    }
+  ]);
+  const [activeTask, setTask] = useState('');
+  const [isActive, setActive] = useState(false);
 
   const addTodo = todo => {
       if(!todo.text || /^\s*$/.test(todo.text)) {
@@ -40,11 +56,14 @@ function App() {
       setTodos(removeArr);
   }
 
-  const completeTodo = id => {
+
+
+  const completeTodo = (id, todo) => {
     var bold = false;
     todos.map(todo => {
         if (todo.id === id) {
             bold = !todo.isComplete
+            setTask(todo.text);
         }
     })
     let updatedTodos = todos.map(todo => {
@@ -70,27 +89,17 @@ function App() {
     })
     setTodos(updatedTodos);
 }
-  var data = [
-    {
-    'name': 'Study',
-    'Seconds': 42
-    },
-    {'name': 'Read',
-    'Seconds': 56
-    },
-    {
-      'name': 'Exercise for 2 hours',
-      'Seconds': 2
-    }
-  ];
 
 
   const updateData = ( seconds ) => {
     console.log('working');
-    data.push({
-      'name': 'test',
+    var copyData = [...data, {
+      'name': activeTask,
       'Seconds': seconds
-    })
+    }]
+    setData(copyData);
+    const removeArr = [...todos].filter(todo => todo.text !== activeTask)
+    setTodos(removeArr);
   }
 
   return (
