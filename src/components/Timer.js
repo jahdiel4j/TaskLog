@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Timer.css'
 
 
-const Timer = ({ updateData }) => {
+const Timer = ({ updateData, todos}) => {
 
     const [buttonLabel, setLabel] = useState('START');
     const [seconds, setSeconds] = useState(0);
@@ -25,18 +25,33 @@ const Timer = ({ updateData }) => {
 
 
    const handleStartClick = () => {
+
+      var x = false;
+      var y = false; 
+
+      todos.map(todo => {
+         if(todo.isComplete === true) {
+            x = true;
+         }
+         if(todo.isComplete === false) {
+            y = true;
+         }
+      })
       
-    setStarted(!started); //Start or stop the time
-      
-    setPressed(true); //This is so the LOG button will show up
-       if(started===true)
-       {
-        setLabel('RESUME');
-       }
-       else if(started===false)
-       {
-        setLabel('PAUSE');
-       }
+      if((todos.length === 1 && !x) || (x && y)) {
+
+         setStarted(!started); //Start or stop the time
+         
+         setPressed(true); //This is so the LOG button will show up
+         if(started===true)
+         {
+         setLabel('RESUME');
+         }
+         else if(started===false)
+         {
+         setLabel('PAUSE');
+         }
+      }
        
  }
 
