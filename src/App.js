@@ -36,15 +36,35 @@ function App() {
   }
 
   const completeTodo = id => {
-      let updatedTodos = todos.map(todo => {
-          if (todo.id === id) {
-              todo.isComplete = !todo.isComplete
-          }
-          return todo
-      })
-      setTodos(updatedTodos);
-  }
+    var bold = false;
+    todos.map(todo => {
+        if (todo.id === id) {
+            bold = !todo.isComplete
+        }
+    })
+    let updatedTodos = todos.map(todo => {
+        if(bold) {
+            if(todo.id === id) {
+                todo.isComplete = false;
+            }
+            if (todo.id != id) {
 
+                todo.isComplete = !todo.isComplete
+            }
+        }
+        else {
+            if(todo.id === id) {
+                todo.isComplete = false;
+            }
+            if (todo.id != id) {
+
+                todo.isComplete = true;
+            }
+        }
+        return todo
+    })
+    setTodos(updatedTodos);
+}
   var data = [
     {
     'name': 'Study',
