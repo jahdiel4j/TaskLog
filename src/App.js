@@ -6,8 +6,13 @@ import Timer from './components/Timer';
 import { Route, Switch } from 'react-router-dom';
 import TodoForm from './components/TodoForm'
 import Todo from './components/Todo';
+import { Modal } from 'react-bootstrap';
 
 function App() {
+
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const [todos, setTodos] = useState([])
 
