@@ -92,14 +92,23 @@ function App() {
 
 
   const updateData = ( seconds ) => {
+    var bool = true;
     console.log('working');
-    var copyData = [...data, {
-      'name': activeTask,
-      'Seconds': seconds
-    }]
-    setData(copyData);
-    const removeArr = [...todos].filter(todo => todo.text !== activeTask)
-    setTodos(removeArr);
+    data.forEach(d => 
+      {
+        if (d.name === activeTask) {
+          d.Seconds+=seconds;
+          bool = false;
+        }
+      }  
+    );
+    if (bool) {
+      var copyData = [...data, {
+        'name': activeTask,
+        'Seconds': seconds
+      }]
+      setData(copyData);
+    }
   }
 
   return (
