@@ -4,7 +4,6 @@ import { BarChart, Bar, Cell, XAxis, Label, YAxis, Tooltip } from "recharts";
 
 export default function App({ data }) {
   const [activeIndex, setActiveIndex] = useState(0);
-  const activeItem = data[activeIndex];
 
   const handleClick = useCallback(
     (entry: any, index: number) => {
@@ -24,9 +23,9 @@ export default function App({ data }) {
           <XAxis dataKey="name">
               <Label value="Task" position="bottom" offset={0}/>
           </XAxis>
-          <YAxis label={{ value: 'Hours', angle: -90, position: 'insideLeft' }} />
+          <YAxis label={{ value: 'Seconds', angle: -90, position: 'insideLeft' }} />
           <Tooltip/>
-        <Bar dataKey="uv" onClick={handleClick}>
+        <Bar dataKey="Seconds" onClick={handleClick}>
           {data.map((entry, index) => (
             <Cell
               cursor="pointer"

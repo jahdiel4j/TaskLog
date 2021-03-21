@@ -9,10 +9,6 @@ import Todo from './components/Todo';
 
 function App() {
 
-  const activeTodo = 0;
-  const seconds = 0;
-  var isTaskSelected = false;
-
   const [todos, setTodos] = useState([])
 
   const addTodo = todo => {
@@ -49,20 +45,29 @@ function App() {
       setTodos(updatedTodos);
   }
 
-  const toggle = () => {
-    isTaskSelected = !isTaskSelected;
-    console.log(isTaskSelected);
-  }
+  var data = [
+    {
+    'name': 'Study',
+    'Seconds': 42
+    },
+    {'name': 'Read',
+    'Seconds': 56
+    },
+    {
+      'name': 'Exercise for 2 hours',
+      'Seconds': 2
+    }
+  ];
 
-  const taskSelected = (id) => {
-    console.log('task selected');
-  }
 
-  const updateData = (activeTodo, seconds) => {
+  const updateData = ( seconds ) => {
     console.log('working');
+    data.push({
+      'name': 'test',
+      'Seconds': seconds
+    })
   }
 
-  const data = [];
   return (
     <div className="todo-app">
         <NavBar/>
@@ -70,9 +75,10 @@ function App() {
         <Switch>
           <Route path="/report">
             <Chart data={data}/>
+            <h1>Completed Tasks:</h1>
           </Route>
           <Route path="/">
-            <Timer />
+            <Timer updateData={updateData}/>
             <TodoForm onSubmit={addTodo} />
             <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo}/>
           </Route>

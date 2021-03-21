@@ -8,7 +8,7 @@ export default class Navbar extends Component {
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
                 <Link to="/" className="navbar-brand">TaskLog</Link>
                 <div className="navbar-collapse">
-                    <ul className="navbar-nav mr-auto">
+                    <ul className="navbar-nav mr-auto" role="list" aria-labelledby="list-heading">
                         <li className="navbar-item">
                             <Link to="/report" className="nav-link">Weekly Report</Link>
                         </li>

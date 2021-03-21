@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import './Timer.css'
 
 
-const Timer = () => {
+const Timer = ({ updateData }) => {
 
     const [buttonLabel, setLabel] = useState('START');
     const [seconds, setSeconds] = useState(0);
@@ -41,10 +41,11 @@ const Timer = () => {
  }
 
  const handleLogClick = () => { //Reset everything
-
+    updateData(seconds);
     setStarted(false);
     setLabel('START');
     setPressed(false);
+    //console.log(seconds);
     setSeconds(0);
     //Saves the "seconds"
  }
@@ -70,7 +71,7 @@ const getMinutes = () => {
     return (
              <div className="timer">
              <h1>{getMinutes()}:{getSeconds()}</h1>
-             <button type="button" class="timerButton" onClick = {handleStartClick}>{buttonLabel}</button>
+             <button type="button" class="timerButton" onClick = {handleStartClick} aria-pressed="false">{buttonLabel}</button>
                 {otherButtons()}
              </div>
     )
