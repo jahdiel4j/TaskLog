@@ -1,4 +1,4 @@
-.Link {
+/* .Link {
     font: bold 11px Arial;
     text-decoration: none;
     background-color: #EEEEEE;
@@ -9,9 +9,10 @@
     border-bottom: 1px solid #333333;
     border-left: 1px solid #CCCCCC;
   }
+*/
 
 li {
-  background-color: white;
+  background-color: #ca9e97
 }
 
 a {
