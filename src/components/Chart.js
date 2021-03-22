@@ -20,12 +20,12 @@ export default function App({ data }) {
         data={data}
         margin={{ top:10, right: 20, left:20, bottom: 40}}
         >
-          <XAxis dataKey="name">
-              <Label value="Task" position="bottom" offset={0}/>
+          <XAxis dataKey="name" style={{fill: 'rgb(255, 255, 255, 1)'}}>
+              <Label value="Task" position="bottom" offset={0} style={{fill: 'rgb(255, 255, 255, 1)'}}/>
           </XAxis>
-          <YAxis label={{ value: 'Seconds', angle: -90, position: 'insideLeft' }} />
+          <YAxis label={{ value: 'Seconds', angle: -90, position: 'insideLeft', fill: 'rgb(255, 255, 255, 1)' }} style={{fill: 'rgb(255, 255, 255, 1)'}}/>
           <Tooltip/>
-        <Bar dataKey="Seconds" onClick={handleClick}>
+        <Bar dataKey="Seconds" onClick={handleClick} >
           {data.map((entry, index) => (
             <Cell
               cursor="pointer"

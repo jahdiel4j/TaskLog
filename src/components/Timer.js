@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import './Timer.css'
+import { Modal, Button } from 'react-bootstrap';
 
 
 const Timer = ({ updateData, todos}) => {
@@ -8,7 +9,10 @@ const Timer = ({ updateData, todos}) => {
     const [seconds, setSeconds] = useState(0);
     const [started, setStarted] = useState(false);
     const [pressed, setPressed] = useState(false);
-    
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
 
 
  useEffect(() => {
@@ -63,12 +67,13 @@ const Timer = ({ updateData, todos}) => {
     //console.log(seconds);
     setSeconds(0);
     //Saves the "seconds"
+    handleShow();
  }
 
  const otherButtons = () => { //If the start button is pressed, show the LOG button
     if(pressed === true)
       {
-        return <button type="button" class="timerButton2" onClick = {handleLogClick}>LOG</button>
+        return <button type="button" class="timerButton2" onClick = {handleLogClick} data-bs-toggle="modal" data-bs-target="#exampleModal">LOG</button>
       }
  }
 
@@ -84,7 +89,16 @@ const getMinutes = () => {
 
     
     return (
+               
              <div className="timer">
+                <Modal show={show} onHide={handleClose}>
+                  <Modal.Body>Task has been logged!</Modal.Body>
+                  <Modal.Footer>
+                     <Button variant="secondary" onClick={handleClose}>
+                        Close
+                     </Button>
+                  </Modal.Footer>
+                  </Modal>
              <h1>{getMinutes()}:{getSeconds()}</h1>
              <button type="button" class="timerButton" onClick = {handleStartClick} aria-pressed="false">{buttonLabel}</button>
                 {otherButtons()}

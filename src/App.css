@@ -28,6 +28,11 @@ h1 {
   font-size: 24px;
 }
 
+h2 {
+  color: white;
+  font-size: 20px;
+}
+
 .complete {
   opacity: 0.3;
 }

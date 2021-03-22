@@ -6,31 +6,27 @@ import Timer from './components/Timer';
 import { Route, Switch } from 'react-router-dom';
 import TodoForm from './components/TodoForm'
 import Todo from './components/Todo';
-import { Modal } from 'react-bootstrap';
+import Session from './components/Session';
 
 function App() {
 
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
   const [todos, setTodos] = useState([])
-  const [data, setData] = useState([
-    {
-      'name': 'Study',
-      'Seconds': 42
-    },
-    {
-      'name': 'Read',
-      'Seconds': 56
-    },
-    {
-      'name': 'Exercise for 2 hours',
-      'Seconds': 2
-    }
-  ]);
+  // const [data, setData] = useState([
+  //   {
+  //     'name': 'Study',
+  //     'Seconds': 42
+  //   },
+  //   {
+  //     'name': 'Read',
+  //     'Seconds': 56
+  //   },
+  //   {
+  //     'name': 'Exercise for 2 hours',
+  //     'Seconds': 2
+  //   }
+  // ]);
+  const [data, setData] = useState([]);
   const [activeTask, setTask] = useState('');
-  const [isActive, setActive] = useState(false);
 
   const addTodo = todo => {
       if(!todo.text || /^\s*$/.test(todo.text)) {
@@ -48,6 +44,10 @@ function App() {
       }
 
       setTodos(prev => prev.map(item => (item.id === todoId ? newValue : item)));
+  }
+
+  const updateSession = (dataName, newTime) => {
+    setData(prev => prev.map(item => (item.name === dataName ? newTime : item)))
   }
 
   const removeTodo = id => {
@@ -71,7 +71,7 @@ function App() {
             if(todo.id === id) {
                 todo.isComplete = false;
             }
-            if (todo.id != id) {
+            if (todo.id !== id) {
 
                 todo.isComplete = !todo.isComplete
             }
@@ -80,7 +80,7 @@ function App() {
             if(todo.id === id) {
                 todo.isComplete = false;
             }
-            if (todo.id != id) {
+            if (todo.id !== id) {
 
                 todo.isComplete = true;
             }
@@ -97,7 +97,9 @@ function App() {
     data.forEach(d => 
       {
         if (d.name === activeTask) {
-          d.Seconds+=seconds;
+          var s = parseInt(seconds);
+          var ds = parseInt(d.Seconds);
+          d.Seconds = (s + ds);
           bool = false;
         }
       }  
@@ -118,7 +120,8 @@ function App() {
         <Switch>
           <Route path="/report">
             <Chart data={data}/>
-            <h1>Completed Tasks:</h1>
+            <h2>Completed Tasks:</h2>
+            <Session data={data} updateSession={updateSession}/>
           </Route>
           <Route path="/">
             <Timer updateData={updateData} todos={todos}/>
