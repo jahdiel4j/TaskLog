@@ -129,10 +129,15 @@ function App() {
             <h2>Completed Tasks:</h2>
             <Session data={data} updateSession={updateSession} removeSession={removeSession} />
           </Route>
-          <Route path="/">
+          <Route path="/task">
             <Timer updateData={updateData} todos={todos}/>
             <TodoForm onSubmit={addTodo} />
             <Todo todos={todos} completeTodo={completeTodo} removeTodo={removeTodo} updateTodo={updateTodo}/>
+          </Route>
+          <Route path="/">
+          <h1>Task Log Application</h1>
+          <br/>
+          <h3>Created by Alex Liou, Jahdiel Suarez, Nathan Allen, and Samuel Liechty</h3>
           </Route>
         </Switch>
     </div>
