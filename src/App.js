@@ -56,6 +56,12 @@ function App() {
       setTodos(removeArr);
   }
 
+  const removeSession = name => {
+    const removeArr = [...data].filter(dat => dat.name !== name)
+
+    setData(removeArr);
+  }
+
 
 
   const completeTodo = (id, todo) => {
@@ -121,7 +127,7 @@ function App() {
           <Route path="/report">
             <Chart data={data}/>
             <h2>Completed Tasks:</h2>
-            <Session data={data} updateSession={updateSession}/>
+            <Session data={data} updateSession={updateSession} removeSession={removeSession} />
           </Route>
           <Route path="/">
             <Timer updateData={updateData} todos={todos}/>

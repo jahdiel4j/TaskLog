@@ -1,8 +1,9 @@
 import React, {useState} from 'react'
 import SessionForm from './SessionForm'
 import { TiEdit } from 'react-icons/ti'
+import { RiCloseCircleLine } from 'react-icons/ri'
 
-const Session = ({data, updateSession}) => {
+const Session = ({data, updateSession, removeSession}) => {
     const [edit, setEdit] = useState({
         'name': null,
         'Seconds': 0
@@ -25,6 +26,10 @@ const Session = ({data, updateSession}) => {
                 Name: {dat.name}, Seconds: {dat.Seconds}s
             </div>
             <div className="icons">
+                <RiCloseCircleLine
+                    onClick={() => removeSession(dat.name)}
+                    className='delete-icon'
+                />
                 <TiEdit 
                     onClick={() => setEdit({ 'name': dat.name, 'Seconds': dat.Seconds })}
                     className='edit-icon'
